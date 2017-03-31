@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-         compositeDisposable = new CompositeDisposable();
+        compositeDisposable = new CompositeDisposable();
 
         Button button = (Button) findViewById(R.id.btn);
         final TextView textView = (TextView) findViewById(R.id.home_textview);
