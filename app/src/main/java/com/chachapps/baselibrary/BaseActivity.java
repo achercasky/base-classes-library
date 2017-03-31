@@ -8,7 +8,7 @@ import com.chachapps.initialclasses.activity.InitialActivity;
 
 public class BaseActivity extends InitialActivity {
 
-    
+
 
 
 
