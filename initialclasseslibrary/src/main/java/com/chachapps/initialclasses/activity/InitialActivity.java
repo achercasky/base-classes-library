@@ -72,13 +72,13 @@ public abstract class InitialActivity extends AppCompatActivity{
         }
     }
 
-    protected abstract int getMyFragment();
+    public abstract int getMyFragment();
 
-    protected abstract boolean isSplashScreen();
+    public abstract boolean isSplashScreen();
 
-    protected abstract void bindView();
+    public abstract void bindView();
 
-    protected abstract void injectClass();
+    public abstract void injectClass();
 
-    protected abstract void initListeners();
+    public abstract void initListeners();
 }
