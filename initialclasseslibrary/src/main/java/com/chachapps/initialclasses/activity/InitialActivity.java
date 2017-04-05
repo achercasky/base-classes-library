@@ -72,6 +72,25 @@ public abstract class InitialActivity extends AppCompatActivity{
         }
     }
 
+    protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation) {
+
+        newFragment = fragment.getClass().getName();
+
+        if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
+            FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+
+            t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+
+            if(isFromBottomNavigation) {
+                t.replace(getMyFragment(),fragment);
+            } else {
+                t.add(getMyFragment(), fragment, newFragment);
+            }
+            
+            t.commit();
+        }
+    }
+
     public abstract int getMyFragment();
 
     public abstract boolean isSplashScreen();
