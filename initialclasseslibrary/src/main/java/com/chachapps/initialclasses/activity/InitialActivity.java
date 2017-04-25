@@ -3,24 +3,33 @@ package com.chachapps.initialclasses.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.chachapps.initialclasses.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by arichercasky on 21/3/17.
  */
 
-public abstract class InitialActivity extends AppCompatActivity{
+public abstract class InitialActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener{
 
     private String newFragment;
     private String currentFragment;
 
+    private List<String> backStackList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getFragmentManager().addOnBackStackChangedListener(this);
+        backStackList = new ArrayList<>();
 
         if(isSplashScreen()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -60,17 +69,36 @@ public abstract class InitialActivity extends AppCompatActivity{
      * @param transition
      */
     protected void changeFragment(Fragment fragment, boolean addToBackStack, int transition) {
-
         newFragment = fragment.getClass().getName();
 
         if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
             FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-
+            if (addToBackStack) {
+                t.addToBackStack(fragment.getClass().getName());
+            } else {
+                backStackList.clear();
+                backStackList.add(newFragment);
+                if (currentFragment != null)
+                    t.remove(getSupportFragmentManager().findFragmentByTag(currentFragment));
+                currentFragment = newFragment;
+            }
             t.setTransition(transition);
             t.add(getMyFragment(), fragment, newFragment);
             t.commit();
         }
     }
+//    protected void changeFragment(Fragment fragment, boolean addToBackStack, int transition) {
+//
+//        newFragment = fragment.getClass().getName();
+//
+//        if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
+//            FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+//
+//            t.setTransition(transition);
+//            t.add(getMyFragment(), fragment, newFragment);
+//            t.commit();
+//        }
+//    }
 
     protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation) {
 
@@ -86,8 +114,36 @@ public abstract class InitialActivity extends AppCompatActivity{
             } else {
                 t.add(getMyFragment(), fragment, newFragment);
             }
-            
+
             t.commit();
+        }
+    }
+
+
+
+    @Override
+    public void onBackStackChanged() {
+        int count = getFragmentManager().getBackStackEntryCount();
+        int lastPos = backStackList.size() - 1;
+        FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+
+
+        if (count > lastPos) {
+            backStackList.add(newFragment);
+
+            t.hide(getSupportFragmentManager().findFragmentByTag(currentFragment));
+            t.show(Fragment.instantiate(this, newFragment));
+            currentFragment = newFragment;
+            t.commit();
+
+        } else if (count < lastPos) {
+
+            currentFragment = backStackList.get(lastPos);
+            backStackList.remove(lastPos);
+            t.show(getSupportFragmentManager().findFragmentByTag(backStackList.get(lastPos - 1)));
+            currentFragment = backStackList.get(lastPos - 1);
+            t.commit();
+
         }
     }
 
