@@ -122,7 +122,11 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
                 currentFragment = newFragment;
             }
             t.setTransition(transition);
-            t.add(getMyFragment(), fragment, newFragment);
+            if(isFromBottomNavigation) {
+                t.replace(getMyFragment(), fragment, newFragment);
+            } else {
+                t.add(getMyFragment(), fragment, newFragment);
+            }
             t.commit();
         }
     }
