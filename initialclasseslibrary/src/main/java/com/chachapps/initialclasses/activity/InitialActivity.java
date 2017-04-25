@@ -28,7 +28,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().addOnBackStackChangedListener(this);
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
         backStackList = new ArrayList<>();
 
         if(isSplashScreen()) {
