@@ -131,6 +131,39 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         }
     }
 
+    /**
+     * This method replace or add a fragment if you use a bottom navigation view. Also you can set your transition and custom animations.
+     * @param fragment
+     * @param addToBackStack
+     * @param isFromBottomNavigation
+     * @param enter
+     * @param exit
+     */
+    protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation, int enter, int exit) {
+        newFragment = fragment.getClass().getName();
+
+        if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
+            FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+            if (addToBackStack) {
+                t.addToBackStack(fragment.getClass().getName());
+            } else {
+                backStackList.clear();
+                backStackList.add(newFragment);
+                if (currentFragment != null)
+                    t.remove(getSupportFragmentManager().findFragmentByTag(currentFragment));
+                currentFragment = newFragment;
+            }
+            t.setCustomAnimations(enter, exit);
+           // t.setTransition(transition);
+            if(isFromBottomNavigation) {
+                t.replace(getMyFragment(), fragment, newFragment);
+            } else {
+                t.add(getMyFragment(), fragment, newFragment);
+            }
+            t.commit();
+        }
+    }
+
     protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation) {
 
         newFragment = fragment.getClass().getName();
