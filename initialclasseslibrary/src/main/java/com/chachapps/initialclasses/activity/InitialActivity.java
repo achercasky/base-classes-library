@@ -139,7 +139,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
      * @param enter
      * @param exit
      */
-    protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation, int enter, int exit) {
+    protected void changeFragment(Fragment fragment, boolean addToBackStack, boolean isFromBottomNavigation, int enter, int exit, int animEnter, int animExist) {
         newFragment = fragment.getClass().getName();
 
         if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
@@ -153,7 +153,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
                     t.remove(getSupportFragmentManager().findFragmentByTag(currentFragment));
                 currentFragment = newFragment;
             }
-            t.setCustomAnimations(enter, exit);
+            t.setCustomAnimations(enter, exit, animEnter, animExist);
            // t.setTransition(transition);
             if(isFromBottomNavigation) {
                 t.replace(getMyFragment(), fragment, newFragment);
