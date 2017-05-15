@@ -1,4 +1,4 @@
-package com.chachapps.initialclasses.activity;
+package com.achercasky.initialclasses.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
-
-import com.chachapps.initialclasses.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +37,8 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         bindView();
 
         injectClass();
+
+        initListeners();
     }
 
     /**
@@ -217,4 +217,5 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
 
     public abstract void injectClass();
 
+    public abstract void initListeners();
 }

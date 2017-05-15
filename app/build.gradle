@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -29,4 +30,31 @@ dependencies {
     //    compile 'com.github.achercasky:base-classes-library:0.1.0'
     testCompile 'junit:junit:4.12'
     compile project(':initialclasseslibrary')
+    compile project(':initial-classes-mvp-rx-loaders')
+
+    compile 'com.android.support:design:25.3.1'
+
+    //Butterknife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+
+    //Moshi
+    compile 'com.squareup.retrofit2:converter-moshi:2.0.2'
+    compile 'com.squareup.moshi:moshi:1.4.0'
+
+    //Dagger2
+    compile 'com.google.dagger:dagger:2.5'
+    apt 'com.google.dagger:dagger-compiler:2.5'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+
+    //OK HTTP
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
 }
