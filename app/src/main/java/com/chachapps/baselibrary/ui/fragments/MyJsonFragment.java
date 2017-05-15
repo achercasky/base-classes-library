@@ -1,6 +1,5 @@
 package com.chachapps.baselibrary.ui.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +9,11 @@ import android.widget.Toast;
 
 import com.achercasky.initialclasses.mvp.presenter.BasePresenter;
 import com.chachapps.baselibrary.R;
-import com.chachapps.baselibrary.application.SampleApplication;
-import com.chachapps.baselibrary.dagger.component.DaggerAppComponent;
 import com.chachapps.baselibrary.model.Post;
 import com.chachapps.baselibrary.mvp.MyJsonPresenter;
 import com.chachapps.baselibrary.mvp.MyJsonView;
-import com.chachapps.baselibrary.ui.component.DaggerMyJsonComponent;
 import com.chachapps.baselibrary.ui.loaders.MyJsonLoader;
-import com.chachapps.baselibrary.ui.module.MyJsonModule;
+
 
 import java.util.List;
 
@@ -28,12 +24,7 @@ import javax.inject.Inject;
  * Created by achercasky on 14/05/2017.
  */
 
-public class MyJsonFragment extends BaseFragment implements MyJsonView{
-
-    @Inject
-    MyJsonPresenter presenter;
-
-//    @Inject
+public class MyJsonFragment extends BaseFragment<MyJsonView, MyJsonPresenter> implements MyJsonView{
 
 
     public static MyJsonFragment newInstance() {
@@ -52,33 +43,27 @@ public class MyJsonFragment extends BaseFragment implements MyJsonView{
     }
 
     @Override
-    public Loader<BasePresenter> getPresenterLoader() {
-        return new MyJsonLoader(getContext());
+    public MyJsonView getMvpView() {
+        return this;
     }
 
     @Override
-    public BasePresenter getPresenter() {
-        return new MyJsonPresenter();
+    public Loader<MyJsonPresenter> getPresenterLoader() {
+        return new MyJsonLoader(getContext());
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-     DaggerMyJsonComponent.builder()
-                .appComponent(SampleApplication.getInstance().getAppComponent())
-                .myJsonModule(new MyJsonModule()).build().inject(this);
-
-        showProgress();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//
 
-        presenter.attachMvpView(this);
-        presenter.getPost();
+        showProgress();
+        getPresenter().getPost();
     }
 
     @Override
@@ -114,6 +99,5 @@ public class MyJsonFragment extends BaseFragment implements MyJsonView{
 
         Log.i("Paso", "paso por en onStop");
         hideProgress();
-        presenter.dettachMvpView();
     }
 }

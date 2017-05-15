@@ -31,4 +31,5 @@ public class BasePresenter<T extends BaseMvpView> implements Presenter<T> {
     public T getMvpView() {
         return this.mvpView;
     }
+
 }

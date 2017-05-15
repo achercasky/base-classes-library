@@ -14,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.achercasky.initialclasses.fragment.InitialFragment;
 import com.achercasky.initialclasses.mvp.presenter.BasePresenter;
+import com.achercasky.initialclasses.mvp.view.BaseMvpView;
 import com.chachapps.baselibrary.ui.activities.BaseActivity;
 
 import butterknife.ButterKnife;
@@ -23,30 +25,12 @@ import butterknife.ButterKnife;
  * Created by achercasky on 14/05/2017.
  */
 
-public abstract class BaseFragment<T> extends Fragment implements LoaderManager.LoaderCallbacks<BasePresenter>{
-
-    protected T callbacks;
+public abstract class BaseFragment<V extends BaseMvpView, P extends BasePresenter<V>> extends InitialFragment<V,P>
+        implements LoaderManager.LoaderCallbacks<P>{
 
     protected BasePresenter basePresenter;
 
     static final int PRESENTER_LOADER_ID = 1;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            callbacks = (T) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "must implement callback interface");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        this.callbacks = null;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,25 +60,6 @@ public abstract class BaseFragment<T> extends Fragment implements LoaderManager.
     protected abstract int getMainLayoutResId();
 
     protected void inflateViews(View rootView){}
-
-    @Override
-    public Loader<BasePresenter> onCreateLoader(int id, Bundle args) {
-        return getPresenterLoader();
-    }
-
-    @Override
-    public void onLoadFinished(Loader<BasePresenter> loader, BasePresenter data) {
-        basePresenter = data;
-    }
-
-    @Override
-    public void onLoaderReset(Loader<BasePresenter> loader) {
-        basePresenter = null;
-    }
-
-    public abstract Loader<BasePresenter> getPresenterLoader();
-
-    public abstract BasePresenter getPresenter();
 
     protected void showProgress() {
         if(getActivity() != null)

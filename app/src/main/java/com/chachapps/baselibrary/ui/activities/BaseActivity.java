@@ -54,7 +54,7 @@ public abstract class BaseActivity extends InitialActivity{
     }
 
     /**
-     * This method is used for the BaseFragment class.
+     * This method is used for the InitialFragment class.
      * @param fragment
      */
     public void changeFragment(Fragment fragment, boolean addToBackStack) {

@@ -52,5 +52,14 @@ public abstract class BaseLoader <T extends BasePresenter> extends Loader{
         deliverResult(presenter);
     }
 
+    @Override
+    protected void onReset() {
+        super.onReset();
+
+        if (presenter != null) {
+            presenter = null;
+        }
+    }
+
     public abstract T getPresenter();
 }

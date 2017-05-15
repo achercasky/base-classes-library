@@ -15,10 +15,7 @@ import dagger.Component;
  */
 
 @ActivityScope
-@Component(dependencies = AppComponent.class, modules = MyJsonModule.class)
+@Component(dependencies = AppComponent.class)
 public interface MyJsonComponent {
-
-    void inject(MyJsonPresenter myJsonPresenter);
-    void inject(MyJsonFragment myJsonFragment);
     MyJsonPresenter myJsonPresenter();
 }
