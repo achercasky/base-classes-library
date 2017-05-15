@@ -32,7 +32,6 @@ public class MyJsonLoader extends BaseLoader<MyJsonPresenter> {
 
         component = DaggerMyJsonComponent.builder()
                 .appComponent(SampleApplication.getInstance().getAppComponent())
-                .myJsonModule(new MyJsonModule())
                 .build();
     }
 

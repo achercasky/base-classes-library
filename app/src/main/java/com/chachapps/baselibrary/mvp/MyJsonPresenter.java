@@ -26,11 +26,11 @@ public class MyJsonPresenter extends BasePresenter<MyJsonView>{
     @Inject
     SampleService service;
 
+    @Inject
     public MyJsonPresenter(){
 
         DaggerMyJsonComponent.builder()
-                .appComponent(SampleApplication.getInstance().getAppComponent())
-                .myJsonModule(new MyJsonModule()).build().inject(this);
+                .appComponent(SampleApplication.getInstance().getAppComponent()).build();
     }
 
     public void getPost() {
