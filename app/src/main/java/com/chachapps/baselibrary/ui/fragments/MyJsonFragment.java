@@ -17,9 +17,6 @@ import com.chachapps.baselibrary.ui.loaders.MyJsonLoader;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-
 /**
  * Created by achercasky on 14/05/2017.
  */

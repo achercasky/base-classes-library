@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends InitialActivity{
 
-//    @BindView(R.id.frame)
+    @BindView(R.id.frame)
     FrameLayout frameLayout;
 
     protected ProgressDialog progressDialog;
@@ -31,11 +31,12 @@ public abstract class BaseActivity extends InitialActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ButterKnife.bind(this);
+
 
         setContentView(R.layout.activity_base);
+        ButterKnife.bind(this);
 
-         frameLayout = (FrameLayout) findViewById(R.id.frame);
+//         frameLayout = (FrameLayout) findViewById(R.id.frame);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("cargando");
