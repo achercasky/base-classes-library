@@ -115,7 +115,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
                 currentFragment = newFragment;
             } else {
                 backStackList.clear();
-                backStackList.add(newFragment);
+              //  backStackList.add(newFragment);
                 if (currentFragment != null)
                     t.remove(getSupportFragmentManager().findFragmentByTag(currentFragment));
                 currentFragment = newFragment;
