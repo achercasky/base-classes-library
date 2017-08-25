@@ -200,12 +200,16 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
 
 
         if (count > lastPos) {
-            backStackList.add(newFragment);
 
-            t.hide(getSupportFragmentManager().findFragmentByTag(currentFragment));
-            t.show(Fragment.instantiate(this, newFragment));
-            currentFragment = newFragment;
-            t.commit();
+            if(!backStackList.contains(newFragment)) {
+
+                backStackList.add(newFragment);
+
+                t.hide(getSupportFragmentManager().findFragmentByTag(currentFragment));
+                t.show(Fragment.instantiate(this, newFragment));
+                currentFragment = newFragment;
+                t.commit();
+            }
 
         } else if (count < lastPos) {
 
