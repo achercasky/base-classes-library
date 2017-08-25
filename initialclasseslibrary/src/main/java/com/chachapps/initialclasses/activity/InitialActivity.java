@@ -199,7 +199,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
 
 
-        if (count > lastPos) {
+        if (count >= lastPos) {
 
             if(!backStackList.contains(newFragment)) {
 
