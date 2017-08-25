@@ -116,7 +116,6 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
             FragmentTransaction t = getSupportFragmentManager().beginTransaction();
             if (addToBackStack) {
                 t.addToBackStack(fragment.getClass().getName());
-                currentFragment = newFragment;
             } else {
                 backStackList.clear();
                 backStackList.add(newFragment);
@@ -131,6 +130,8 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
                 t.add(getMyFragment(), fragment, newFragment);
             }
             t.commit();
+
+            currentFragment = newFragment;
         }
     }
 
