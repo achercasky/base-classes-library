@@ -41,6 +41,10 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         injectClass();
     }
 
+    protected void clearBackStack() {
+        this.backStackList.clear();
+    }
+
     /**
      * This method loads the initial fragment
      *
