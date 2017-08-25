@@ -134,7 +134,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
             }
             t.commit();
 
-            currentFragment = newFragment;
+            //currentFragment = newFragment;
         }
     }
 
