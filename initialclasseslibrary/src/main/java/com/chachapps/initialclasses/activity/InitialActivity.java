@@ -53,9 +53,8 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
      * This method loads the initial fragment
      *
      * @param fragment
-     * @param addToBackStack
      */
-    protected void changeFragment(Fragment fragment, boolean addToBackStack) {
+    protected void changeFragment(Fragment fragment) {
 
         newFragment = fragment.getClass().getName();
 
