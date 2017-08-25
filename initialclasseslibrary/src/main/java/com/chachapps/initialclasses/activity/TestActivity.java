@@ -58,7 +58,7 @@ public abstract class TestActivity extends AppCompatActivity {
             } else {
                 t.add(getMyFragment(), fragment, newFragment);
             }
-            
+
             currentFragment = newFragment;
 
             t.commit();
@@ -99,6 +99,10 @@ public abstract class TestActivity extends AppCompatActivity {
             t.commit();
             getSupportFragmentManager().executePendingTransactions();
         }
+    }
+
+    public List<String> getBackStackList() {
+        return backStackList;
     }
 
     @Override
