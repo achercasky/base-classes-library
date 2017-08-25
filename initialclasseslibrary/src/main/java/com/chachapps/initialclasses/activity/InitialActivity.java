@@ -19,10 +19,10 @@ import java.util.List;
 
 public abstract class InitialActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener{
 
-    private String newFragment;
-    private String currentFragment;
+    protected String newFragment;
+    protected String currentFragment;
 
-    private List<String> backStackList;
+    protected List<String> backStackList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -199,7 +199,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
 
 
-        if (count >= lastPos) {
+        if (count > lastPos) {
 
             if(!backStackList.contains(newFragment)) {
 
