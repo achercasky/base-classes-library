@@ -84,9 +84,9 @@ public abstract class TestActivity extends AppCompatActivity {
             if (backStackList.size() > 0) {
                 currentFragment = backStackList.get(backStackList.size() - 1);
             }
+        } else {
+            super.onBackPressed();
         }
-
-        super.onBackPressed();
     }
 
     protected Fragment getCurrentFragment() {
