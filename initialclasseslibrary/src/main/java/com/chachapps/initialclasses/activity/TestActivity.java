@@ -75,6 +75,20 @@ public abstract class TestActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+//        setAnimation();
+        if (backStackList.size() > 0 ) {
+            getFragmentManager().popBackStack();
+            backStackList.remove(backStackList.size() - 1);
+            if (backStackList.size() > 0) {
+                currentFragment = backStackList.get(backStackList.size() - 1);
+            }
+        }
+
+        super.onBackPressed();
+    }
+
     protected Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentByTag(currentFragment);
     }
