@@ -121,7 +121,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
                 backStackList.add(newFragment);
                 if (currentFragment != null)
                     t.remove(getSupportFragmentManager().findFragmentByTag(currentFragment));
-                currentFragment = newFragment;
+//                currentFragment = newFragment;
             }
             t.setTransition(transition);
             if(isFromBottomNavigation) {
