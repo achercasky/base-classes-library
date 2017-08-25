@@ -60,7 +60,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
 
         if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
             FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-
+            t.addToBackStack(fragment.getClass().getName());
             t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             t.add(getMyFragment(), fragment, newFragment);
             t.commit();
