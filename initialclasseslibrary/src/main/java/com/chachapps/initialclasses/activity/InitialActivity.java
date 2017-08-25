@@ -41,6 +41,10 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         injectClass();
     }
 
+    public List<String> getBackStackList() {
+        return backStackList;
+    }
+
     protected void clearBackStack() {
         this.backStackList.clear();
     }
