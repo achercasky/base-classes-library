@@ -222,6 +222,20 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
         }
     }
 
+    @Override
+    public void onBackPressed() {
+//        setAnimation();
+        if (backStackList.size() > 0 ) {
+            getFragmentManager().popBackStack();
+            backStackList.remove(backStackList.size() - 1);
+            if (backStackList.size() > 0) {
+                currentFragment = backStackList.get(backStackList.size() - 1);
+            }
+        }
+
+        super.onBackPressed();
+    }
+
     public abstract int getMyFragment();
 
     public abstract boolean isSplashScreen();
