@@ -40,6 +40,32 @@ public abstract class TestActivity extends AppCompatActivity {
         injectClass();
     }
 
+    protected void changeFragment(Fragment fragment) {
+        fragment.setArguments(getIntent().getExtras());
+        newFragment = fragment.getClass().getName();
+
+        if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
+            FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+//            t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            if (currentFragment != null) {
+                t.detach(getSupportFragmentManager().findFragmentByTag(currentFragment));
+            }
+
+            t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            if (getSupportFragmentManager().findFragmentByTag (newFragment) != null) {
+                t.attach(getSupportFragmentManager().findFragmentByTag(newFragment));
+            } else {
+                t.add(getMyFragment(), fragment, newFragment);
+            }
+            
+            currentFragment = newFragment;
+
+            t.commit();
+            getSupportFragmentManager().executePendingTransactions();
+        }
+    }
+
     protected void changeFragment(Fragment fragment, Boolean addToBackStack) {
         fragment.setArguments(getIntent().getExtras());
         newFragment = fragment.getClass().getName();
@@ -84,9 +110,9 @@ public abstract class TestActivity extends AppCompatActivity {
             if (backStackList.size() > 0) {
                 currentFragment = backStackList.get(backStackList.size() - 1);
             }
-        } else {
-            super.onBackPressed();
         }
+
+        super.onBackPressed();
     }
 
     protected Fragment getCurrentFragment() {
