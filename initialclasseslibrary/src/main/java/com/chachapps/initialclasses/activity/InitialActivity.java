@@ -212,7 +212,7 @@ public abstract class InitialActivity extends AppCompatActivity implements Fragm
             }
 
         } else if (count < lastPos) {
-
+            t.hide(getSupportFragmentManager().findFragmentByTag(newFragment));
             currentFragment = backStackList.get(lastPos);
             backStackList.remove(lastPos);
             t.show(getSupportFragmentManager().findFragmentByTag(backStackList.get(lastPos - 1)));
