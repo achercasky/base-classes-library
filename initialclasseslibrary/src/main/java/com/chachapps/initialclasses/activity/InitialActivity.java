@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
+import com.achercasky.eppermissions.BasePermissions;
 import com.chachapps.initialclasses.R;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by arichercasky on 21/3/17.
  */
 
-public abstract class InitialActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener{
+public abstract class InitialActivity extends BasePermissions implements FragmentManager.OnBackStackChangedListener{
 
     protected String newFragment;
     protected String currentFragment;

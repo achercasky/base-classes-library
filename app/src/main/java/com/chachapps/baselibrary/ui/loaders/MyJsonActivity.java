@@ -28,4 +28,19 @@ public class MyJsonActivity extends BaseActivity {
     public void injectClass() {
 
     }
+
+    @Override
+    public String[] getPermissions() {
+        return null;
+    }
+
+    @Override
+    public void onPermissionAccepted() {
+
+    }
+
+    @Override
+    public void onPermissionDenied() {
+
+    }
 }

@@ -15,4 +15,8 @@ public interface BaseMvpView {
     void onNoInternetConnection();
 
     void onErrorCode(String message);
+
+    void showLoader();
+
+    void showMainLayout();
 }

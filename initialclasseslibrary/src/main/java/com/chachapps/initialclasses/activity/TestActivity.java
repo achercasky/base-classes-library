@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.chachapps.initialclasses.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
