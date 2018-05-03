@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sfl_placeholder">#8a000000</color>
+    <declare-styleable name="SflStatefulLayout"><attr format="string" name="state"/><attr format="reference" name="stateTextAppearance"/><attr format="reference" name="offlineLayout"/><attr format="reference" name="emptyLayout"/><attr format="reference" name="progressLayout"/><attr format="reference" name="offlineImageDrawable"/><attr format="reference" name="emptyImageDrawable"/><attr format="string" name="emptyText"/><attr format="string" name="offlineText"/><attr format="string" name="offlineRetryText"/></declare-styleable>
+    <dimen name="sfl_activity_horizontal_margin">16dp</dimen>
+    <dimen name="sfl_activity_vertical_margin">16dp</dimen>
+    <dimen name="sfl_global_keyline_l">72dp</dimen>
+    <dimen name="sfl_global_keyline_m">32dp</dimen>
+    <dimen name="sfl_global_keyline_s">16dp</dimen>
+    <dimen name="sfl_global_keyline_xs">8dp</dimen>
+    <string name="sfl_default_placeholder_empty">Ooops… No data here.</string>
+    <string name="sfl_default_placeholder_offline">Ooops… You are offline.</string>
+    <string name="sfl_retry">Retry</string>
+    <style name="sfl_StateImage">
+		<item name="android:layout_marginBottom">@dimen/sfl_global_keyline_s</item>
+		<item name="android:tint">?attr/colorPrimary</item>
+	</style>
+    <style name="sfl_TextAppearanceStateDefault" parent="TextAppearance.AppCompat.Small">
+		<item name="android:textColor">@color/sfl_placeholder</item>
+	</style>
+</resources>

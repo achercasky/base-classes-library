@@ -8,26 +8,30 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by arichercasky on 21/3/17.
  */
 
-public class BasePresenter <T extends BaseMvpView> implements Presenter<T> {
+public abstract class BasePresenter <T extends BaseMvpView> implements Presenter<T> {
 
     protected T mvpView;
-    protected CompositeDisposable compositeSubscription;
-
+    protected CompositeDisposable compositeDisposable;
 
     @Override
     public void attachMvpView(T t) {
         this.mvpView = t;
-        this.compositeSubscription = new CompositeDisposable();
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void dettachMvpView() {
         this.mvpView = null;
-        if (this.compositeSubscription != null)
-            this.compositeSubscription.clear();
+        if (this.compositeDisposable != null)
+            this.compositeDisposable.clear();
     }
 
     public T getMvpView() {
         return this.mvpView;
+    }
+
+    protected void checkError() {
+
+
     }
 }
