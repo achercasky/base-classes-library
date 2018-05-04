@@ -5,11 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.achercasky.eppermissions.BasePermissions;
-import com.chachapps.initialclasses.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
  * Created by arichercasky on 21/3/17.
  */
 
-public abstract class InitialActivity extends BasePermissions implements FragmentManager.OnBackStackChangedListener{
+public abstract class InitialActivity extends BasePermissions implements FragmentManager.OnBackStackChangedListener {
 
     protected String newFragment;
     protected String currentFragment;
@@ -32,14 +30,10 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         backStackList = new ArrayList<>();
 
-        if(isSplashScreen()) {
+        if (isSplashScreen()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-
-        bindView();
-
-        injectClass();
     }
 
     public List<String> getBackStackList() {
@@ -70,6 +64,7 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
 
     /**
      * This method loads the fragment with the parameter to define a transition
+     *
      * @param fragment
      * @param addToBackStack
      * @param transition
@@ -93,21 +88,10 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
             t.commit();
         }
     }
-//    protected void changeFragment(Fragment fragment, boolean addToBackStack, int transition) {
-//
-//        newFragment = fragment.getClass().getName();
-//
-//        if (currentFragment == null || fragment == null || currentFragment.compareTo(newFragment) != 0) {
-//            FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-//
-//            t.setTransition(transition);
-//            t.add(getMyFragment(), fragment, newFragment);
-//            t.commit();
-//        }
-//    }
 
     /**
      * This method replace or add a fragment if you use a bottom navigation view. Also you can set your transition.
+     *
      * @param fragment
      * @param addToBackStack
      * @param isFromBottomNavigation
@@ -128,7 +112,7 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
 //                currentFragment = newFragment;
             }
             t.setTransition(transition);
-            if(isFromBottomNavigation) {
+            if (isFromBottomNavigation) {
                 t.replace(getMyFragment(), fragment, newFragment);
             } else {
                 t.add(getMyFragment(), fragment, newFragment);
@@ -141,6 +125,7 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
 
     /**
      * This method replace or add a fragment if you use a bottom navigation view. Also you can set your transition and custom animations.
+     *
      * @param fragment
      * @param addToBackStack
      * @param isFromBottomNavigation
@@ -162,8 +147,8 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
                 currentFragment = newFragment;
             }
             t.setCustomAnimations(enter, exit, animEnter, animExist);
-           // t.setTransition(transition);
-            if(isFromBottomNavigation) {
+            // t.setTransition(transition);
+            if (isFromBottomNavigation) {
                 t.replace(getMyFragment(), fragment, newFragment);
             } else {
                 t.add(getMyFragment(), fragment, newFragment);
@@ -181,8 +166,8 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
 
             t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 
-            if(isFromBottomNavigation) {
-                t.replace(getMyFragment(),fragment);
+            if (isFromBottomNavigation) {
+                t.replace(getMyFragment(), fragment);
             } else {
                 t.add(getMyFragment(), fragment, newFragment);
             }
@@ -191,18 +176,15 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
         }
     }
 
-
-
     @Override
     public void onBackStackChanged() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
         int lastPos = backStackList.size() - 1;
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
 
-
         if (count > lastPos) {
 
-            if(!backStackList.contains(newFragment)) {
+            if (!backStackList.contains(newFragment)) {
 
                 backStackList.add(newFragment);
 
@@ -225,26 +207,7 @@ public abstract class InitialActivity extends BasePermissions implements Fragmen
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-////        setAnimation();
-//        if (backStackList.size() > 0 ) {
-//            getFragmentManager().popBackStack();
-//            backStackList.remove(backStackList.size() - 1);
-//            if (backStackList.size() > 0) {
-//                currentFragment = backStackList.get(backStackList.size() - 1);
-//            }
-//        }
-//
-//        super.onBackPressed();
-//    }
-
     public abstract int getMyFragment();
 
     public abstract boolean isSplashScreen();
-
-    public abstract void bindView();
-
-    public abstract void injectClass();
-
 }
