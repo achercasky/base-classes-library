@@ -54,6 +54,6 @@ public class MyJsonPresenter extends BasePresenter<MyJsonView> {
                     }
                 });
 
-        compositeSubscription.add(disposable);
+        compositeDisposable.add(disposable);
     }
 }

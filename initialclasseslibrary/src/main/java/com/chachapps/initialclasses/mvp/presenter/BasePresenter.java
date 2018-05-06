@@ -22,8 +22,11 @@ public abstract class BasePresenter <T extends BaseMvpView> implements Presenter
     @Override
     public void dettachMvpView() {
         this.mvpView = null;
-        if (this.compositeDisposable != null)
+        if (this.compositeDisposable != null) {
             this.compositeDisposable.clear();
+            this.compositeDisposable.dispose();
+        }
+
     }
 
     public T getMvpView() {
