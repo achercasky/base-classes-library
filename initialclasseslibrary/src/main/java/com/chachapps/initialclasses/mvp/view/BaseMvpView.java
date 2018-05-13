@@ -21,4 +21,6 @@ public interface BaseMvpView {
     void showNetworkError();
 
     void showEmptyLayout();
+
+    void showProgressLayout();
 }
