@@ -1,1 +1,1 @@
-include ':app', ':initialclasseslibrary', ':initial-classes-mvp-rx-loaders'
+include ':app', ':initialclasseslibrary', ':initial-classes-mvp-rx-loaders', ':initial_mvvm'
