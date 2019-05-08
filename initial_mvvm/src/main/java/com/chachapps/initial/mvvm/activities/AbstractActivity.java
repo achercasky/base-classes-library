@@ -32,11 +32,22 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
         mMainView = findViewById(R.id.initial_main_view);
         mProgressView = findViewById(R.id.initial_progress_view);
         mErrorView = findViewById(R.id.initial_error_view);
-        mProgressView = findViewById(R.id.initial_error_view);
         mEmptyView = findViewById(R.id.initial_empty_view);
 
         if (getLayoutResourceId() != 0) {
             mMainView.addView(getLayoutInflater().inflate(getLayoutResourceId(), null));
+        }
+
+        if(getProgressLayoutResourceId() != 0) {
+            mProgressView.addView(getLayoutInflater().inflate(getProgressLayoutResourceId(), null));
+        }
+
+        if(getErrorLayoutResourceId() != 0) {
+            mErrorView.addView(getLayoutInflater().inflate(getErrorLayoutResourceId(), null));
+        }
+
+        if(getEmptyLayoutResourceId() != 0) {
+            mEmptyView.addView(getLayoutInflater().inflate(getEmptyLayoutResourceId(), null));
         }
 
         mCompositeDisposable = new CompositeDisposable();
@@ -104,6 +115,21 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
      * @return the activity layout
      */
     protected abstract int getLayoutResourceId();
+
+    /**
+     * @return the progress view layout
+     */
+    protected abstract int getProgressLayoutResourceId();
+
+    /**
+     * @return the empty view layout
+     */
+    protected abstract int getEmptyLayoutResourceId();
+
+    /**
+     * @return the error view layout
+     */
+    protected abstract int getErrorLayoutResourceId();
 
     /**
      * @return the current ViewModel for the activity
