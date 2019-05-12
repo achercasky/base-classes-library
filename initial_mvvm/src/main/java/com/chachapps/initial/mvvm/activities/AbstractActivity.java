@@ -110,6 +110,14 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
         mErrorView.setVisibility(View.GONE);
     }
 
+    protected void showToolbar() {
+        mToolbarView.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideToobar() {
+        mToolbarView.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
