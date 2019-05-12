@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/initial_toolbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <FrameLayout
         android:id="@+id/initial_progress_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/initial_toolbar_view"
+        tools:background="@android:color/holo_red_dark"/>
 
     <FrameLayout
         android:id="@+id/initial_error_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/initial_toolbar_view"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/initial_main_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/initial_toolbar_view"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/initial_empty_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/initial_toolbar_view"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:visibility="gone" />
 

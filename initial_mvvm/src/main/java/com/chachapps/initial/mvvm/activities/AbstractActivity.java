@@ -19,6 +19,7 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
 
     private CompositeDisposable mCompositeDisposable;
 
+    private FrameLayout mToolbarView;
     private FrameLayout mMainView;
     private FrameLayout mProgressView;
     private FrameLayout mErrorView;
@@ -29,6 +30,7 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_abstract_activity);
 
+        mToolbarView = findViewById(R.id.initial_toolbar_view);
         mMainView = findViewById(R.id.initial_main_view);
         mProgressView = findViewById(R.id.initial_progress_view);
         mErrorView = findViewById(R.id.initial_error_view);
@@ -48,6 +50,10 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
 
         if(getEmptyLayoutResourceId() != 0) {
             mEmptyView.addView(getLayoutInflater().inflate(getEmptyLayoutResourceId(), null));
+        }
+
+        if(getToolbarLayoutResourceId() != 0) {
+            mToolbarView.addView(getLayoutInflater().inflate(getToolbarLayoutResourceId(), null));
         }
 
         mCompositeDisposable = new CompositeDisposable();
@@ -130,6 +136,11 @@ public abstract class AbstractActivity<T extends BaseViewModel> extends AppCompa
      * @return the error view layout
      */
     protected abstract int getErrorLayoutResourceId();
+
+    /**
+     * @return the tool bar view layout
+     */
+    protected abstract int getToolbarLayoutResourceId();
 
     /**
      * @return the current ViewModel for the activity
