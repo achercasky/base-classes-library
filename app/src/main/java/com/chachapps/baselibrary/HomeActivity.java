@@ -1,56 +1,53 @@
 package com.chachapps.baselibrary;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
-import com.chachapps.initialclasses.rx.RxEventBus;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
+import com.chachapps.initial.mvvm.activities.AbstractActivity;
+import com.chachapps.initial.mvvm.viewmodels.BaseViewModel;
 
-public class HomeActivity extends AppCompatActivity {
-
-    private CompositeDisposable compositeDisposable;
+public class HomeActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
 
-        compositeDisposable = new CompositeDisposable();
-
-        Button button = (Button) findViewById(R.id.btn);
-        final TextView textView = (TextView) findViewById(R.id.home_textview);
-
-        compositeDisposable.add(RxEventBus.getInstance().toObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-
-                        String msg = (String) o;
-
-                        textView.setText(msg);
-                    }
-                }));
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RxEventBus.getInstance().send("Adioooos mundo crueeel!");
-            }
-        });
+        showToolbar();
+        Toolbar mToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolbar);
+        showToolbar();
+//        showMainLayout();
+        showProgress();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        compositeDisposable.clear(); // Do not send event after activity has been destroyed
+    protected int getLayoutResourceId() {
+        return R.layout.activity_home;
+    }
 
+    @Override
+    protected int getProgressLayoutResourceId() {
+        return 0;
+    }
+
+    @Override
+    protected int getEmptyLayoutResourceId() {
+        return 0;
+    }
+
+    @Override
+    protected int getErrorLayoutResourceId() {
+        return 0;
+    }
+
+    @Override
+    protected int getToolbarLayoutResourceId() {
+        return R.layout.toolbar;
+    }
+
+    @Override
+    protected Class<? extends BaseViewModel> initViewModel() {
+        return null;
     }
 }

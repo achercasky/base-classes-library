@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.chachapps.baselibrary"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,7 +30,7 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$constraintVersion"
 //        compile 'com.github.achercasky:base-classes-library:0.1.0'
     testCompile 'junit:junit:4.12'
-    compile project(':initialclasseslibrary')
+   // compile project(':initialclasseslibrary')
 //    compile project(':initial-classes-mvp-rx-loaders')
     compile 'com.android.support:design:26.+'
 
@@ -50,5 +49,6 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    implementation project(path: ':initial_mvvm')
 
 }
