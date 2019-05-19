@@ -28,7 +28,7 @@ public class HomeActivity extends AbstractActivity {
 
     @Override
     protected int getProgressLayoutResourceId() {
-        return 0;
+        return R.layout.view_progress;
     }
 
     @Override
